@@ -17,6 +17,7 @@
 		57656EA323F5C6BA00700C45 /* shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EA023F5C6A700700C45 /* shaders */; };
 		57656EAB23F8927000700C45 /* flower.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EA923F8927000700C45 /* flower.png */; };
 		57656EAC23F8927000700C45 /* cloud.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EAA23F8927000700C45 /* cloud.png */; };
+		57656EAE23F8967600700C45 /* bee.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EAD23F8967600700C45 /* bee.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 				57656EA323F5C6BA00700C45 /* shaders in CopyFiles */,
 				57656EAB23F8927000700C45 /* flower.png in CopyFiles */,
 				57656EAC23F8927000700C45 /* cloud.png in CopyFiles */,
+				57656EAE23F8967600700C45 /* bee.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +51,7 @@
 		57656EA423F5C6DC00700C45 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		57656EA923F8927000700C45 /* flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flower.png; path = Scene/flower.png; sourceTree = "<group>"; };
 		57656EAA23F8927000700C45 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cloud.png; path = Scene/cloud.png; sourceTree = "<group>"; };
+		57656EAD23F8967600700C45 /* bee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bee.png; path = Scene/bee.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,7 @@
 		57656E7023F5BD2E00700C45 = {
 			isa = PBXGroup;
 			children = (
+				57656EAD23F8967600700C45 /* bee.png */,
 				57656EAA23F8927000700C45 /* cloud.png */,
 				57656EA923F8927000700C45 /* flower.png */,
 				57656E7B23F5BD2E00700C45 /* Scene */,

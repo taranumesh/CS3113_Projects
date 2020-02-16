@@ -21,6 +21,7 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 glm::mat4 modelMatrices_c[6];
 glm::mat4 modelMatrices_f[5];
+glm::mat4 modelMatrix_b;
 
 float cloud_x_reset = -7.0f;
 
@@ -33,8 +34,14 @@ float flowers_rot[5] = {0.0f, 60.0f, 300.0f, 120.0f, 250.0f};
 float flowers_scale[5] = {1.0, 1.4, 1.7, 1.2, 1.9};
 float flowers_scale_mul[5] = {1.01, 0.99, 0.99, 1.01, 1.01};
 
+float bee_x = 6.0f;
+float bee_y = 0.0f;
+float bee_mov = 0.0f;
+float bee_rot = 0.0f;
+
 GLuint playerTextureID_cloud;
 GLuint playerTextureID_flower;
+GLuint playerTextureID_bee;
 
 GLuint LoadTexture(const char* filePath) {
     int w, h, n;
@@ -85,6 +92,7 @@ void Initialize() {
     
     playerTextureID_cloud = LoadTexture("cloud.png");
     playerTextureID_flower = LoadTexture("flower.png");
+    playerTextureID_bee = LoadTexture("bee.png");
 }
 
 void ProcessInput() {
@@ -102,7 +110,7 @@ void updateClouds(float deltaTime) {
         else clouds_x[i] += 0.5*deltaTime;
         modelMatrix = glm::mat4(1.0);
         modelMatrices_c[i] = glm::translate(modelMatrix, glm::vec3(clouds_x[i], clouds_y[i], 0.0f));
-        modelMatrices_c[i] = glm::scale(modelMatrices_c[i], glm::vec3(2.0f, 2.0f, 0.0));
+        modelMatrices_c[i] = glm::scale(modelMatrices_c[i], glm::vec3(2.0f, 2.0f, 0.0f));
     }
 }
 
@@ -111,15 +119,25 @@ void updateFlowers(float deltaTime) {
     for (size_t i=0; i < 5; ++i) {
         if (flowers_rot[i] > 360) flowers_rot[i] -= 360;
         flowers_rot[i] += deltaTime*90;
-        if (flowers_scale[i] > 2.0f) flowers_scale_mul[i] = 0.99;
-        else if (flowers_scale[i] < 1.0f) flowers_scale_mul[i] = 1.01;
+        if (flowers_scale[i] > 2.0f) flowers_scale_mul[i] = 0.99f;
+        else if (flowers_scale[i] < 1.0f) flowers_scale_mul[i] = 1.01f;
         scaler = flowers_scale_mul[i] * flowers_scale[i];
         flowers_scale[i] = scaler;
         modelMatrix = glm::mat4(1.0);
         modelMatrices_f[i] = glm::translate(modelMatrix, glm::vec3(flowers_x[i], flowers_y[i], 0.0f));
-        modelMatrices_f[i] = glm::scale(modelMatrices_f[i], glm::vec3(scaler, scaler, 0.0));
+        modelMatrices_f[i] = glm::scale(modelMatrices_f[i], glm::vec3(scaler, scaler, 0.0f));
         modelMatrices_f[i] = glm::rotate(modelMatrices_f[i], glm::radians(flowers_rot[i]),glm::vec3(0.0f, 0.0f, 1.0f));
     }
+}
+
+void updateBee(float deltaTime) {
+    if (bee_mov < -6.0f) bee_mov = 6.0f;
+    else bee_mov -= deltaTime*2.0;
+    bee_rot += deltaTime*180;
+    bee_x = cos(glm::radians(bee_rot)) + bee_mov;
+    bee_y = sin(glm::radians(bee_rot));
+    modelMatrix = glm::mat4(1.0);
+    modelMatrix_b = glm::translate(modelMatrix, glm::vec3(bee_x, bee_y, 0.0f));
 }
 
 float lastTicks = 0.0f;
@@ -129,6 +147,7 @@ void Update() {
     lastTicks = ticks;
     updateClouds(deltaTime);
     updateFlowers(deltaTime);
+    updateBee(deltaTime);
 }
 
 
@@ -156,6 +175,15 @@ void Render() {
         glBindTexture(GL_TEXTURE_2D, playerTextureID_flower);
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
+    program.SetModelMatrix(modelMatrix_b);
+    float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program.positionAttribute);
+    glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program.texCoordAttribute);
+    glBindTexture(GL_TEXTURE_2D, playerTextureID_bee);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     glDisableVertexAttribArray(program.positionAttribute);
     glDisableVertexAttribArray(program.texCoordAttribute);
     SDL_GL_SwapWindow(displayWindow);
