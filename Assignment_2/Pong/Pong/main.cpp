@@ -19,7 +19,7 @@ bool gameIsRunning = true;
 
 ShaderProgram program;
 glm::mat4 viewMatrix, projectionMatrix, modelMatrix;
-glm::mat4 modelMatrixp1, modelMatrixp2, modelMatrixball, modelMatrixtree1, modelMatrixtree2;
+glm::mat4 modelMatrixp1, modelMatrixp2, modelMatrixball, modelMatrixtree1, modelMatrixtree2, modelMatrixwin;
 
 glm::vec3 tree_position1 = glm::vec3(-4.7, 0, 0);
 glm::vec3 tree_position2 = glm::vec3(4.7, 0, 0);
@@ -38,20 +38,21 @@ glm::vec3 ball_movement = glm::vec3(1.0, 1.0, 0);
 glm::vec3 player_scaling = glm::vec3(0.6, 2.0, 0.0);
 glm::vec3 ball_scaling = glm::vec3(1.0, 1.0, 0.0);
 
+glm::vec3 win_position = glm::vec3(0, 3, 0);
+glm::vec3 win_scale = glm::vec3(2, 2, 0);
+
 float player_height = 1.0 * player_scaling.y;
 float player_width = 1.0 * player_scaling.x;
 
 
-float player_speed = 3.0f;
+float player_speed = 4.0f;
 float ball_speed = 2.0f;
 
 int p1_score = 0;
 int p2_score = 0;
+bool reset = true;
 
-GLuint player1TextureID;
-GLuint player2TextureID;
-GLuint ballTextureID;
-GLuint treeTextureID;
+GLuint player1TextureID, player2TextureID, ballTextureID, treeTextureID, winp1TextureID, winp2TextureID;
 
 GLuint LoadTexture(const char* filePath) {
     int w, h, n;
@@ -92,6 +93,12 @@ void Initialize() {
     program.SetViewMatrix(viewMatrix);
 //    program.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
     
+    modelMatrixtree1 = glm::translate(modelMatrix, tree_position1);
+    modelMatrixtree1 = glm::scale(modelMatrixtree1, tree_scale);
+    modelMatrixtree2 = glm::scale(glm::translate(modelMatrix, tree_position2), tree_scale);
+    modelMatrixwin = glm::translate(modelMatrix, win_position);
+    modelMatrixwin = glm::scale(modelMatrixwin, win_scale);
+    
     glUseProgram(program.programID);
     
     glClearColor(0.3f, 0.65f, 0.85f, 1.0f);
@@ -104,6 +111,8 @@ void Initialize() {
     player2TextureID = LoadTexture("slug2.png");
     ballTextureID = LoadTexture("shell.png");
     treeTextureID = LoadTexture("tree.png");
+    winp1TextureID = LoadTexture("slug1won.png");
+    winp2TextureID = LoadTexture("slug2won.png");
 }
 
 void ProcessInput() {
@@ -145,6 +154,12 @@ void ProcessInput() {
         player2_movement.y = -1.0;
     }
     
+    if (keys[SDL_SCANCODE_SPACE]) {
+        reset = false;
+        p1_score = 0;
+        p2_score = 0;
+    }
+    
 }
 float lastTicks = 0.0f;
 
@@ -161,33 +176,56 @@ void update_player2(float deltaTime) {
 }
 
 void update_ball(float deltaTime) {
-    if (((ball_position.y + 0.5) > 3.75) || ((ball_position.y - 0.5) < -3.75)) ball_movement.y *= -1.0;
-    float x_dist_p1 = fabs(ball_position.x - player1_position.x) - ((player_width + 0.5)/2);
-    float y_dist_p1 = fabs(ball_position.y - player1_position.y) - ((player_height + 0.5)/2);
-    float x_dist_p2 = fabs(ball_position.x - player2_position.x) - ((player_width + 0.5)/2);
-    float y_dist_p2 = fabs(ball_position.y - player2_position.y) - ((player_height + 0.5)/2);
-    if ( ((x_dist_p1 < 0) && (y_dist_p1 < 0)) || ((x_dist_p2 < 0) && (y_dist_p2 < 0)) ) {
-        ball_movement.x *= -1.0;
-    }
-    ball_position += ball_movement * player_speed * deltaTime;
-    if (((ball_position.x + 0.5) > 5.0) || ((ball_position.x - 0.5) < -5.0)) {
-        ball_position = glm::vec3(0, 0, 0);
-        ball_speed = 2.0;
-        player_speed = 3.0;
-        int random = rand() % 4;
-        switch(random) {
-            case 0:
-                ball_movement = glm::vec3(1.0, 1.0, 0);
-                break;
-            case 1:
-                ball_movement = glm::vec3(1.0, -1.0, 0);
-                break;
-            case 2:
-                ball_movement = glm::vec3(-1.0, 1.0, 0);
-                break;
-            case 3:
-                ball_movement = glm::vec3(-1.0, -1.0, 0);
-                break;
+    if (!reset) {
+        if (((ball_position.y + 0.5) > 3.75) || ((ball_position.y - 0.5) < -3.75)) ball_movement.y *= -1.0;
+        float x_dist_p1 = fabs(ball_position.x - player1_position.x) - ((player_width + 0.5)/2);
+        float y_dist_p1 = fabs(ball_position.y - player1_position.y) - ((player_height + 0.5)/2);
+        float x_dist_p2 = fabs(ball_position.x - player2_position.x) - ((player_width + 0.5)/2);
+        float y_dist_p2 = fabs(ball_position.y - player2_position.y) - ((player_height + 0.5)/2);
+        if ( ((x_dist_p1 < 0) && (y_dist_p1 < 0)) || ((x_dist_p2 < 0) && (y_dist_p2 < 0)) ) {
+            ball_movement.x *= -1.0;
+        }
+        ball_position += ball_movement * player_speed * deltaTime;
+        if ((ball_position.x + 0.5) > 5.0) {
+            p2_score += 1;
+            ball_position = glm::vec3(0, 0, 0);
+            ball_speed = 2.0;
+            player_speed = 4.0;
+            int random = rand() % 4;
+            switch(random) {
+                case 0:
+                    ball_movement = glm::vec3(1.0, 1.0, 0);
+                    break;
+                case 1:
+                    ball_movement = glm::vec3(1.0, -1.0, 0);
+                    break;
+                case 2:
+                    ball_movement = glm::vec3(-1.0, 1.0, 0);
+                    break;
+                case 3:
+                    ball_movement = glm::vec3(-1.0, -1.0, 0);
+                    break;
+            }
+        } else if ((ball_position.x - 0.5) < -5.0) {
+            p1_score += 1;
+            ball_position = glm::vec3(0, 0, 0);
+            ball_speed = 2.0;
+            player_speed = 4.0;
+            int random = rand() % 4;
+            switch(random) {
+                case 0:
+                    ball_movement = glm::vec3(1.0, 1.0, 0);
+                    break;
+                case 1:
+                    ball_movement = glm::vec3(1.0, -1.0, 0);
+                    break;
+                case 2:
+                    ball_movement = glm::vec3(-1.0, 1.0, 0);
+                    break;
+                case 3:
+                    ball_movement = glm::vec3(-1.0, -1.0, 0);
+                    break;
+            }
         }
     }
     modelMatrixball = glm::translate(modelMatrix, ball_position);
@@ -204,9 +242,6 @@ void Update() {
     update_ball(deltaTime);
     ball_speed += 0.1*deltaTime;
     player_speed += 0.1*deltaTime;
-    modelMatrixtree1 = glm::translate(modelMatrix, tree_position1);
-    modelMatrixtree1 = glm::scale(modelMatrixtree1, tree_scale);
-    modelMatrixtree2 = glm::scale(glm::translate(modelMatrix, tree_position2), tree_scale);
 }
 
 void Render() {
@@ -248,6 +283,25 @@ void Render() {
     glEnableVertexAttribArray(program.texCoordAttribute);
     glBindTexture(GL_TEXTURE_2D, ballTextureID);
     glDrawArrays(GL_TRIANGLES, 0, 6);
+    if (p1_score == 10) {
+        program.SetModelMatrix(modelMatrixwin);
+        glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+        glEnableVertexAttribArray(program.positionAttribute);
+        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+        glEnableVertexAttribArray(program.texCoordAttribute);
+        glBindTexture(GL_TEXTURE_2D, winp1TextureID);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        reset = true;
+    } else if (p2_score == 10) {
+        program.SetModelMatrix(modelMatrixwin);
+        glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+        glEnableVertexAttribArray(program.positionAttribute);
+        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+        glEnableVertexAttribArray(program.texCoordAttribute);
+        glBindTexture(GL_TEXTURE_2D, winp2TextureID);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        reset = true;
+    }
     glDisableVertexAttribArray(program.positionAttribute);
     glDisableVertexAttribArray(program.texCoordAttribute);
     SDL_GL_SwapWindow(displayWindow);

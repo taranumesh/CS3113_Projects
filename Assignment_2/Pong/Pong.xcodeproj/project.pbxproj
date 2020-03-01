@@ -19,6 +19,8 @@
 		57656EDE240B169C00700C45 /* slug1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EDC240B169700700C45 /* slug1.png */; };
 		57656EDF240B16A000700C45 /* slug2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EDD240B169700700C45 /* slug2.png */; };
 		57656EE1240C5F9400700C45 /* tree.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EE0240C5F5D00700C45 /* tree.png */; };
+		57656EE4240C7C9500700C45 /* slug1won.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EE2240C7C8C00700C45 /* slug1won.png */; };
+		57656EE5240C7C9800700C45 /* slug2won.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656EE3240C7C8C00700C45 /* slug2won.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +31,8 @@
 			dstSubfolderSpec = 6;
 			files = (
 				57656ED8240B137900700C45 /* shaders in CopyFiles */,
+				57656EE5240C7C9800700C45 /* slug2won.png in CopyFiles */,
+				57656EE4240C7C9500700C45 /* slug1won.png in CopyFiles */,
 				57656EE1240C5F9400700C45 /* tree.png in CopyFiles */,
 				57656EDF240B16A000700C45 /* slug2.png in CopyFiles */,
 				57656EDE240B169C00700C45 /* slug1.png in CopyFiles */,
@@ -55,6 +59,8 @@
 		57656EDC240B169700700C45 /* slug1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slug1.png; sourceTree = "<group>"; };
 		57656EDD240B169700700C45 /* slug2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slug2.png; sourceTree = "<group>"; };
 		57656EE0240C5F5D00700C45 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
+		57656EE2240C7C8C00700C45 /* slug1won.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slug1won.png; sourceTree = "<group>"; };
+		57656EE3240C7C8C00700C45 /* slug2won.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slug2won.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 				57656EDD240B169700700C45 /* slug2.png */,
 				57656ED5240B12A500700C45 /* shell.png */,
 				57656EE0240C5F5D00700C45 /* tree.png */,
+				57656EE2240C7C8C00700C45 /* slug1won.png */,
+				57656EE3240C7C8C00700C45 /* slug2won.png */,
 				57656ECD240B061300700C45 /* glm */,
 				57656ECE240B061300700C45 /* ShaderProgram.cpp */,
 				57656ED1240B061300700C45 /* ShaderProgram.h */,
