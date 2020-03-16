@@ -1,0 +1,379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		57656F32241F09D800700C45 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57656F31241F09D800700C45 /* OpenGL.framework */; };
+		57656F34241F09DE00700C45 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57656F33241F09DE00700C45 /* Cocoa.framework */; };
+		57656F38241F09EA00700C45 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57656F35241F09EA00700C45 /* SDL2_mixer.framework */; };
+		57656F39241F09EA00700C45 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57656F36241F09EA00700C45 /* SDL2_image.framework */; };
+		57656F3A241F09EA00700C45 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57656F37241F09EA00700C45 /* SDL2.framework */; };
+		57656F5A241F0C4800700C45 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57656F53241F0C4700700C45 /* ShaderProgram.cpp */; };
+		57656F5C241F0C4800700C45 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57656F58241F0C4700700C45 /* Entity.cpp */; };
+		57656F5F241F0C6700700C45 /* shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F57241F0C4700700C45 /* shaders */; };
+		57656F67241F0CE300700C45 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57656F66241F0CE300700C45 /* main.cpp */; };
+		57656F6C241F0DC600700C45 /* platformPack_tile001.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F6A241F0DBD00700C45 /* platformPack_tile001.png */; };
+		57656F6D241F0DCA00700C45 /* player.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F6B241F0DBD00700C45 /* player.png */; };
+		57656F72241F2B6E00700C45 /* baby-bird.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F70241F2B6600700C45 /* baby-bird.png */; };
+		57656F73241F2B7100700C45 /* font1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F71241F2B6600700C45 /* font1.png */; };
+		57656F79241F32C400700C45 /* baby-bird-animation.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F74241F32BE00700C45 /* baby-bird-animation.png */; };
+		57656F7A241F32C700700C45 /* bark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F77241F32BF00700C45 /* bark.png */; };
+		57656F7B241F32CA00700C45 /* grass-ground.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F78241F32BF00700C45 /* grass-ground.png */; };
+		57656F7C241F32CD00700C45 /* ground-leaves.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F75241F32BF00700C45 /* ground-leaves.png */; };
+		57656F7D241F33C200700C45 /* tree-top.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57656F76241F32BF00700C45 /* tree-top.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		57656F24241F094400700C45 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				57656F5F241F0C6700700C45 /* shaders in CopyFiles */,
+				57656F6C241F0DC600700C45 /* platformPack_tile001.png in CopyFiles */,
+				57656F6D241F0DCA00700C45 /* player.png in CopyFiles */,
+				57656F72241F2B6E00700C45 /* baby-bird.png in CopyFiles */,
+				57656F73241F2B7100700C45 /* font1.png in CopyFiles */,
+				57656F79241F32C400700C45 /* baby-bird-animation.png in CopyFiles */,
+				57656F7A241F32C700700C45 /* bark.png in CopyFiles */,
+				57656F7B241F32CA00700C45 /* grass-ground.png in CopyFiles */,
+				57656F7C241F32CD00700C45 /* ground-leaves.png in CopyFiles */,
+				57656F7D241F33C200700C45 /* tree-top.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		57656F26241F094400700C45 /* Lunar Lander */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Lunar Lander"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57656F31241F09D800700C45 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		57656F33241F09DE00700C45 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		57656F35241F09EA00700C45 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
+		57656F36241F09EA00700C45 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		57656F37241F09EA00700C45 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		57656F53241F0C4700700C45 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
+		57656F54241F0C4700700C45 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		57656F55241F0C4700700C45 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderProgram.h; sourceTree = "<group>"; };
+		57656F57241F0C4700700C45 /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shaders; sourceTree = "<group>"; };
+		57656F58241F0C4700700C45 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		57656F59241F0C4700700C45 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		57656F65241F0CE300700C45 /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
+		57656F66241F0CE300700C45 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		57656F6A241F0DBD00700C45 /* platformPack_tile001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformPack_tile001.png; sourceTree = "<group>"; };
+		57656F6B241F0DBD00700C45 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		57656F70241F2B6600700C45 /* baby-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baby-bird.png"; sourceTree = "<group>"; };
+		57656F71241F2B6600700C45 /* font1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font1.png; sourceTree = "<group>"; };
+		57656F74241F32BE00700C45 /* baby-bird-animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baby-bird-animation.png"; sourceTree = "<group>"; };
+		57656F75241F32BF00700C45 /* ground-leaves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ground-leaves.png"; sourceTree = "<group>"; };
+		57656F76241F32BF00700C45 /* tree-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tree-top.png"; sourceTree = "<group>"; };
+		57656F77241F32BF00700C45 /* bark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bark.png; sourceTree = "<group>"; };
+		57656F78241F32BF00700C45 /* grass-ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-ground.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		57656F23241F094400700C45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57656F38241F09EA00700C45 /* SDL2_mixer.framework in Frameworks */,
+				57656F39241F09EA00700C45 /* SDL2_image.framework in Frameworks */,
+				57656F3A241F09EA00700C45 /* SDL2.framework in Frameworks */,
+				57656F34241F09DE00700C45 /* Cocoa.framework in Frameworks */,
+				57656F32241F09D800700C45 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		57656F1D241F094400700C45 = {
+			isa = PBXGroup;
+			children = (
+				57656F28241F094400700C45 /* Lunar Lander */,
+				57656F27241F094400700C45 /* Products */,
+				57656F30241F09D800700C45 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		57656F27241F094400700C45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				57656F26241F094400700C45 /* Lunar Lander */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		57656F28241F094400700C45 /* Lunar Lander */ = {
+			isa = PBXGroup;
+			children = (
+				57656F6A241F0DBD00700C45 /* platformPack_tile001.png */,
+				57656F6B241F0DBD00700C45 /* player.png */,
+				57656F65241F0CE300700C45 /* glm */,
+				57656F66241F0CE300700C45 /* main.cpp */,
+				57656F74241F32BE00700C45 /* baby-bird-animation.png */,
+				57656F77241F32BF00700C45 /* bark.png */,
+				57656F78241F32BF00700C45 /* grass-ground.png */,
+				57656F75241F32BF00700C45 /* ground-leaves.png */,
+				57656F76241F32BF00700C45 /* tree-top.png */,
+				57656F70241F2B6600700C45 /* baby-bird.png */,
+				57656F71241F2B6600700C45 /* font1.png */,
+				57656F58241F0C4700700C45 /* Entity.cpp */,
+				57656F59241F0C4700700C45 /* Entity.h */,
+				57656F53241F0C4700700C45 /* ShaderProgram.cpp */,
+				57656F55241F0C4700700C45 /* ShaderProgram.h */,
+				57656F57241F0C4700700C45 /* shaders */,
+				57656F54241F0C4700700C45 /* stb_image.h */,
+			);
+			path = "Lunar Lander";
+			sourceTree = "<group>";
+		};
+		57656F30241F09D800700C45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57656F36241F09EA00700C45 /* SDL2_image.framework */,
+				57656F35241F09EA00700C45 /* SDL2_mixer.framework */,
+				57656F37241F09EA00700C45 /* SDL2.framework */,
+				57656F33241F09DE00700C45 /* Cocoa.framework */,
+				57656F31241F09D800700C45 /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		57656F25241F094400700C45 /* Lunar Lander */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57656F2D241F094400700C45 /* Build configuration list for PBXNativeTarget "Lunar Lander" */;
+			buildPhases = (
+				57656F22241F094400700C45 /* Sources */,
+				57656F23241F094400700C45 /* Frameworks */,
+				57656F24241F094400700C45 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lunar Lander";
+			productName = "Lunar Lander";
+			productReference = 57656F26241F094400700C45 /* Lunar Lander */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		57656F1E241F094400700C45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Tara Umesh";
+				TargetAttributes = {
+					57656F25241F094400700C45 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 57656F21241F094400700C45 /* Build configuration list for PBXProject "Lunar Lander" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 57656F1D241F094400700C45;
+			productRefGroup = 57656F27241F094400700C45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				57656F25241F094400700C45 /* Lunar Lander */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		57656F22241F094400700C45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57656F5A241F0C4800700C45 /* ShaderProgram.cpp in Sources */,
+				57656F5C241F0C4800700C45 /* Entity.cpp in Sources */,
+				57656F67241F0CE300700C45 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		57656F2B241F094400700C45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		57656F2C241F094400700C45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		57656F2E241F094400700C45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		57656F2F241F094400700C45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		57656F21241F094400700C45 /* Build configuration list for PBXProject "Lunar Lander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57656F2B241F094400700C45 /* Debug */,
+				57656F2C241F094400700C45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57656F2D241F094400700C45 /* Build configuration list for PBXNativeTarget "Lunar Lander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57656F2E241F094400700C45 /* Debug */,
+				57656F2F241F094400700C45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 57656F1E241F094400700C45 /* Project object */;
+}
