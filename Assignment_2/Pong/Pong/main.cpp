@@ -10,6 +10,7 @@
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
+#include <SDL_mixer.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -54,6 +55,9 @@ bool reset = true;
 
 GLuint player1TextureID, player2TextureID, ballTextureID, treeTextureID, winp1TextureID, winp2TextureID;
 
+Mix_Music *music;
+Mix_Chunk *bounce;
+
 GLuint LoadTexture(const char* filePath) {
     int w, h, n;
     unsigned char* image = stbi_load(filePath, &w, &h, &n, STBI_rgb_alpha);
@@ -72,7 +76,7 @@ GLuint LoadTexture(const char* filePath) {
 }
 
 void Initialize() {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     displayWindow = SDL_CreateWindow("Texture", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
@@ -84,6 +88,13 @@ void Initialize() {
     glViewport(0, 0, 640, 480);
     
     program.Load("shaders/vertex_textured.glsl", "shaders/fragment_textured.glsl");
+    
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    music = Mix_LoadMUS("dooblydoo.mp3");
+    Mix_PlayMusic(music, -1);
+    Mix_VolumeMusic(MIX_MAX_VOLUME/4);
+    
+    bounce = Mix_LoadWAV("bounce.wav");
     
     viewMatrix = glm::mat4(1.0f);
     modelMatrix = glm::mat4(1.0f);
@@ -113,6 +124,7 @@ void Initialize() {
     treeTextureID = LoadTexture("tree.png");
     winp1TextureID = LoadTexture("slug1won.png");
     winp2TextureID = LoadTexture("slug2won.png");
+    
 }
 
 void ProcessInput() {
@@ -184,6 +196,7 @@ void update_ball(float deltaTime) {
         float y_dist_p2 = fabs(ball_position.y - player2_position.y) - ((player_height + 0.5)/2);
         if ( ((x_dist_p1 < 0) && (y_dist_p1 < 0)) || ((x_dist_p2 < 0) && (y_dist_p2 < 0)) ) {
             ball_movement.x *= -1.0;
+            Mix_PlayChannel(-1, bounce, 0);
         }
         ball_position += ball_movement * player_speed * deltaTime;
         if ((ball_position.x + 0.5) > 5.0) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/Tara/Desktop/Development/Programming/Game_Programming/CS3113_Projects/Assignment_4/AI_game/AI_game/bullet.png">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tara/Desktop/Development/Programming/Game_Programming/CS3113_Projects/Assignment_4/AI_game/AI_game/enemy.png">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tara/Desktop/Development/Programming/Game_Programming/CS3113_Projects/Assignment_4/AI_game/AI_game/player.png">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Tara/Desktop/Development/Programming/Game_Programming/CS3113_Projects/Assignment_4/AI_game/AI_game/wall.png">
+   </FileRef>
+   <FileRef
+      location = "self:AI_game.xcodeproj">
+   </FileRef>
+</Workspace>

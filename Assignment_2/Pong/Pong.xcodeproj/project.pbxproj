@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57434960243124940058D37C /* bounce.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5743495E243124850058D37C /* bounce.wav */; };
+		57434961243124980058D37C /* dooblydoo.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5743495F243124850058D37C /* dooblydoo.mp3 */; };
 		57656EBC240B021700700C45 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57656EBB240B021700700C45 /* main.cpp */; };
 		57656EC4240B04F000700C45 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57656EC3240B04F000700C45 /* OpenGL.framework */; };
 		57656EC6240B04F900700C45 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57656EC5240B04F900700C45 /* Cocoa.framework */; };
@@ -37,12 +39,16 @@
 				57656EDF240B16A000700C45 /* slug2.png in CopyFiles */,
 				57656EDE240B169C00700C45 /* slug1.png in CopyFiles */,
 				57656EDB240B167E00700C45 /* shell.png in CopyFiles */,
+				57434960243124940058D37C /* bounce.wav in CopyFiles */,
+				57434961243124980058D37C /* dooblydoo.mp3 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5743495E243124850058D37C /* bounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bounce.wav; sourceTree = "<group>"; };
+		5743495F243124850058D37C /* dooblydoo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dooblydoo.mp3; sourceTree = "<group>"; };
 		57656EB8240B021700700C45 /* Pong */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pong; sourceTree = BUILT_PRODUCTS_DIR; };
 		57656EBB240B021700700C45 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		57656EC3240B04F000700C45 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -99,6 +105,8 @@
 		57656EBA240B021700700C45 /* Pong */ = {
 			isa = PBXGroup;
 			children = (
+				5743495E243124850058D37C /* bounce.wav */,
+				5743495F243124850058D37C /* dooblydoo.mp3 */,
 				57656EDC240B169700700C45 /* slug1.png */,
 				57656EDD240B169700700C45 /* slug2.png */,
 				57656ED5240B12A500700C45 /* shell.png */,
@@ -313,6 +321,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
 					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -329,6 +338,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
 					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
