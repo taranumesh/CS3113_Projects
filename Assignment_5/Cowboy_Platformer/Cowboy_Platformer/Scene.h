@@ -17,6 +17,9 @@ struct GameState {
     Map *map;
     Entity *player;
     Entity *enemies;
+    int score;
+    int lives;
+    bool lose;
     int nextScene;
 };
 class Scene {
@@ -25,4 +28,5 @@ public:
     virtual void Initialize() = 0;
     virtual void Update(float deltaTime) = 0;
     virtual void Render(ShaderProgram *program) = 0;
+    virtual void ResetLevel() = 0;
 };

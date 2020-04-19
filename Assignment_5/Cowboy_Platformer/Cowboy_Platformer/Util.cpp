@@ -20,8 +20,7 @@ GLuint Util::LoadTexture(const char* filePath) {
     return textureID;
 }
 
-void Util::DrawText(ShaderProgram *program, GLuint fontTexture, std::string text, float size,
-                    float spacing, glm::vec3 position) {
+void Util::DrawText(ShaderProgram *program, GLuint fontTexture, std::string text, float size, float spacing, glm::vec3 position) {
     float width = 1.0f / 16.0f;
     float height = 1.0 / 16.0f;
     std::vector<float> vertices;

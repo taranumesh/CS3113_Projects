@@ -21,18 +21,27 @@
 		579D858D2442B73C00C30734 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D858A2442B73C00C30734 /* SDL2.framework */; };
 		579D858E2442B73C00C30734 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D858B2442B73C00C30734 /* SDL2_image.framework */; };
 		579D858F2442B77600C30734 /* shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D857B2442B5C300C30734 /* shaders */; };
+		579D85982442D14100C30734 /* player.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85962442D13D00C30734 /* player.png */; };
+		579D85992442D14400C30734 /* tiles.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85972442D13E00C30734 /* tiles.png */; };
+		579D859B244659A100C30734 /* cow.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D859A2443D17C00C30734 /* cow.png */; };
+		579D859D244BB77E00C30734 /* font1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D859C244BB77500C30734 /* font1.png */; };
+		579D85A2244CF0D000C30734 /* GameMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 579D85A1244CF0D000C30734 /* GameMenu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		579D855E2442B4DE00C30734 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
 				579D858F2442B77600C30734 /* shaders in CopyFiles */,
+				579D859B244659A100C30734 /* cow.png in CopyFiles */,
+				579D85982442D14100C30734 /* player.png in CopyFiles */,
+				579D85992442D14400C30734 /* tiles.png in CopyFiles */,
+				579D859D244BB77E00C30734 /* font1.png in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -61,6 +70,12 @@
 		579D85892442B73C00C30734 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		579D858A2442B73C00C30734 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		579D858B2442B73C00C30734 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		579D85962442D13D00C30734 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		579D85972442D13E00C30734 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
+		579D859A2443D17C00C30734 /* cow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow.png; sourceTree = "<group>"; };
+		579D859C244BB77500C30734 /* font1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font1.png; sourceTree = "<group>"; };
+		579D859F244CF0C400C30734 /* GameMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameMenu.hpp; sourceTree = "<group>"; };
+		579D85A1244CF0D000C30734 /* GameMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameMenu.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,20 +114,26 @@
 		579D85622442B4DE00C30734 /* Cowboy_Platformer */ = {
 			isa = PBXGroup;
 			children = (
+				579D859A2443D17C00C30734 /* cow.png */,
+				579D85962442D13D00C30734 /* player.png */,
+				579D85972442D13E00C30734 /* tiles.png */,
+				579D859C244BB77500C30734 /* font1.png */,
+				579D85732442B5C100C30734 /* main.cpp */,
 				579D85792442B5C200C30734 /* Entity.cpp */,
 				579D85752442B5C100C30734 /* Entity.h */,
-				579D85712442B5C000C30734 /* glm */,
+				579D85A1244CF0D000C30734 /* GameMenu.cpp */,
+				579D859F244CF0C400C30734 /* GameMenu.hpp */,
 				579D856A2442B5BC00C30734 /* Level1.cpp */,
 				579D85762442B5C100C30734 /* Level1.h */,
 				579D85702442B5BE00C30734 /* Level2.cpp */,
 				579D856B2442B5BD00C30734 /* Level2.h */,
-				579D85732442B5C100C30734 /* main.cpp */,
 				579D856E2442B5BD00C30734 /* Map.cpp */,
 				579D85722442B5C000C30734 /* Map.h */,
 				579D856F2442B5BD00C30734 /* Scene.cpp */,
 				579D856C2442B5BD00C30734 /* Scene.h */,
 				579D85772442B5C200C30734 /* ShaderProgram.cpp */,
 				579D85742442B5C100C30734 /* ShaderProgram.h */,
+				579D85712442B5C000C30734 /* glm */,
 				579D857B2442B5C300C30734 /* shaders */,
 				579D85782442B5C200C30734 /* stb_image.h */,
 				579D856D2442B5BD00C30734 /* Util.cpp */,
@@ -193,6 +214,7 @@
 				579D857F2442B5C300C30734 /* Scene.cpp in Sources */,
 				579D857E2442B5C300C30734 /* Map.cpp in Sources */,
 				579D85812442B5C300C30734 /* main.cpp in Sources */,
+				579D85A2244CF0D000C30734 /* GameMenu.cpp in Sources */,
 				579D85822442B5C300C30734 /* ShaderProgram.cpp in Sources */,
 				579D857C2442B5C300C30734 /* Level1.cpp in Sources */,
 				579D857D2442B5C300C30734 /* Util.cpp in Sources */,

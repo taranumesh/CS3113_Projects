@@ -15,7 +15,7 @@
 enum EntityType { PLAYER, PLATFORM, ENEMY };
 
 enum AIType { WALKER, WAITANDGO };
-enum AIState { IDLE, WALKING, ATTACKING};
+enum AIState { WALKING, DEAD};
 
 class Entity {
 public:
@@ -59,6 +59,8 @@ public:
     bool jump = false;
     float jumpPower = 0;
     
+    bool playerHit = false;
+    
     Entity();
     bool CheckCollision(Entity *other);
     void CheckCollisionsY(Entity *objects, int objectCount);
@@ -70,6 +72,6 @@ public:
     void DrawSpriteFromTextureAtlas(ShaderProgram *program, GLuint textureID, int index);
     
     void AI(Entity *player);
-    void AIWalker();
+    void AIWalker(Entity *player);
     void AIWaitAndGo(Entity *player);
 };

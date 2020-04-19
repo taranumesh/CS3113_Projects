@@ -27,6 +27,8 @@ glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 Scene *currentScene;
 Scene *sceneList[2];
 
+GLuint fontTextureID;
+
 void SwitchToScene(Scene *scene) {
     currentScene = scene;
     currentScene->Initialize();
@@ -64,6 +66,8 @@ void Initialize() {
     sceneList[0] = new Level1();
     sceneList[1] = new Level2();
     SwitchToScene(sceneList[0]);
+    
+    fontTextureID = Util::LoadTexture("font1.png");
 }
 
 void ProcessInput() {
@@ -120,22 +124,41 @@ void Update() {
     currentScene->Update(FIXED_TIMESTEP);
     
     viewMatrix = glm::mat4(1.0f);
-    if (currentScene->state.player->position.x > 5) {
+    if ((currentScene->state.player->position.x > 5) && (currentScene->state.player->position.x < 18)) {
         viewMatrix = glm::translate(viewMatrix,
                                     glm::vec3(-currentScene->state.player->position.x, 3.75, 0));
-    } else {
+    } else if (currentScene->state.player->position.x <= 5) {
         viewMatrix = glm::translate(viewMatrix, glm::vec3(-5, 3.75, 0));
+    } else if (currentScene->state.player->position.x >= 18) {
+        viewMatrix = glm::translate(viewMatrix, glm::vec3(-18, 3.75, 0));
     }
 }
 
 
 void Render() {
     glClear(GL_COLOR_BUFFER_BIT);
-    
     program.SetViewMatrix(viewMatrix);
     
     currentScene->Render(&program);
-    
+    glm::vec3 header_position;
+    if ((currentScene->state.player->position.x > 5) && (currentScene->state.player->position.x < 18)) {
+        header_position = glm::vec3(currentScene->state.player->position.x-4, -0.5, 0);
+    } else if (currentScene->state.player->position.x <= 5) {
+        header_position = glm::vec3(1.0, -0.5, 0);
+    } else if (currentScene->state.player->position.x >= 18) {
+        header_position = glm::vec3(14, -0.5, 0);
+    }
+    if (currentScene->state.lose) {
+        header_position.y -= 2.5;
+        header_position.x += 2.5;
+        Util::DrawText(&program, fontTextureID, "YOU LOSE", 1.0f, -0.5f, header_position);
+    } else {
+        std::string score = "Score:" + std::to_string(currentScene->state.score);
+        std::string lives = " Lives:" + std::to_string(currentScene->state.lives);
+        Util::DrawText(&program, fontTextureID, score, 1.0f, -0.5f, header_position);
+        header_position.x += 4.5;
+        Util::DrawText(&program, fontTextureID, lives, 1.0f, -0.5f, header_position);
+    }
     SDL_GL_SwapWindow(displayWindow);
 }
 
