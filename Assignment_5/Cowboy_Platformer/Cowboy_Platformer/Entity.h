@@ -7,6 +7,7 @@
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include <SDL_mixer.h>
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
@@ -60,6 +61,8 @@ public:
     float jumpPower = 0;
     
     bool playerHit = false;
+    
+    Mix_Chunk *moo_sound;
     
     Entity();
     bool CheckCollision(Entity *other);

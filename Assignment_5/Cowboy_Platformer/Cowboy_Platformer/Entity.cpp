@@ -123,6 +123,7 @@ void Entity::CheckCollisionsY(Entity *objects, int objectCount)
                 collidedBottom = true;
                 if (entityType == PLAYER) {
                     object->isActive = false;
+                    Mix_PlayChannel(-1, moo_sound, 0);
                     jump = true;
                 }
             }

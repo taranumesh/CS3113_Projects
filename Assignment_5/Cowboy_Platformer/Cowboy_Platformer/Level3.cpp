@@ -79,6 +79,8 @@ void Level3::Initialize() {
     state.enemies[1].position = glm::vec3(12, -6, 0);
     state.enemies[2].position = glm::vec3(13, -6, 0);
     state.enemies[3].position = glm::vec3(21, -6, 0);
+    
+    state.player->moo_sound = Mix_LoadWAV("moo.wav");
 }
 void Level3::Update(float deltaTime) {
     state.player->Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);

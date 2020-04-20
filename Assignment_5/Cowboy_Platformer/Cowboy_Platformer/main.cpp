@@ -6,6 +6,7 @@
 
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <SDL_opengl.h>
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -18,7 +19,6 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
-
 
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
@@ -33,6 +33,9 @@ GLuint fontTextureID;
 
 int previousLevelsScore = 0;
 
+Mix_Music *music;
+Mix_Chunk *win;
+
 void SwitchToScene(Scene *scene, int lives) {
     if (scene == sceneList[0]) {
         previousLevelsScore = 0;
@@ -45,7 +48,7 @@ void SwitchToScene(Scene *scene, int lives) {
 }
 
 void Initialize() {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     displayWindow = SDL_CreateWindow("Textured!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
@@ -80,6 +83,11 @@ void Initialize() {
     SwitchToScene(sceneList[0], 3);
     
     fontTextureID = Util::LoadTexture("font1.png");
+    
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    music = Mix_LoadMUS("yeehaw_music.wav");
+    Mix_PlayMusic(music, -1);
+    win = Mix_LoadWAV("yeehaw.wav");
 }
 
 void ProcessInput() {
@@ -180,12 +188,13 @@ void Render() {
         // Check Lose/Win
         if (currentScene->state.lose) {
             header_position.y -= 2.5;
-            header_position.x += 2.5;
+            header_position.x -= 2.0;
             Util::DrawText(&program, fontTextureID, "YOU LOSE", 1.0f, -0.5f, header_position);
         } else if (currentScene->state.win){
             header_position.y -= 2.5;
-            header_position.x += 2.5;
+            header_position.x -= 2.0;
             Util::DrawText(&program, fontTextureID, "YOU WIN!", 1.0f, -0.5f, header_position);
+            Mix_PlayChannel(-1, win, 0);
         }
     }
     SDL_GL_SwapWindow(displayWindow);

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Cowboy_Platformer.xcodeproj">
+      location = "group:/Users/Tara/Desktop/Development/Programming/Game_Programming/CS3113_Projects/Assignment_5/Cowboy_Platformer/Cowboy_Platformer/yeehaw_music.wav">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

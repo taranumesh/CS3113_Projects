@@ -28,6 +28,9 @@
 		579D85A2244CF0D000C30734 /* GameMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 579D85A1244CF0D000C30734 /* GameMenu.cpp */; };
 		579D85A4244D0F2200C30734 /* GameMenu.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85A3244D0C5800C30734 /* GameMenu.png */; };
 		579D85A7244D222800C30734 /* Level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 579D85A5244D222800C30734 /* Level3.cpp */; };
+		579D85B0244D3B7300C30734 /* yeehaw_music.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85AF244D3B4E00C30734 /* yeehaw_music.wav */; };
+		579D85B4244D41EC00C30734 /* moo.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85B3244D406400C30734 /* moo.wav */; };
+		579D85B6244D42CB00C30734 /* yeehaw.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85B5244D42B500C30734 /* yeehaw.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +41,9 @@
 			dstSubfolderSpec = 6;
 			files = (
 				579D858F2442B77600C30734 /* shaders in CopyFiles */,
+				579D85B6244D42CB00C30734 /* yeehaw.wav in CopyFiles */,
+				579D85B4244D41EC00C30734 /* moo.wav in CopyFiles */,
+				579D85B0244D3B7300C30734 /* yeehaw_music.wav in CopyFiles */,
 				579D85A4244D0F2200C30734 /* GameMenu.png in CopyFiles */,
 				579D859B244659A100C30734 /* cow.png in CopyFiles */,
 				579D85982442D14100C30734 /* player.png in CopyFiles */,
@@ -82,6 +88,9 @@
 		579D85A3244D0C5800C30734 /* GameMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameMenu.png; sourceTree = "<group>"; };
 		579D85A5244D222800C30734 /* Level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level3.cpp; sourceTree = "<group>"; };
 		579D85A6244D222800C30734 /* Level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level3.h; sourceTree = "<group>"; };
+		579D85AF244D3B4E00C30734 /* yeehaw_music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yeehaw_music.wav; sourceTree = "<group>"; };
+		579D85B3244D406400C30734 /* moo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = moo.wav; sourceTree = "<group>"; };
+		579D85B5244D42B500C30734 /* yeehaw.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yeehaw.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +129,9 @@
 		579D85622442B4DE00C30734 /* Cowboy_Platformer */ = {
 			isa = PBXGroup;
 			children = (
+				579D85AF244D3B4E00C30734 /* yeehaw_music.wav */,
+				579D85B5244D42B500C30734 /* yeehaw.wav */,
+				579D85B3244D406400C30734 /* moo.wav */,
 				579D859A2443D17C00C30734 /* cow.png */,
 				579D85A3244D0C5800C30734 /* GameMenu.png */,
 				579D85962442D13D00C30734 /* player.png */,
@@ -357,6 +369,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
 					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -373,6 +386,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
 					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
