@@ -22,13 +22,12 @@ void Level1::Initialize() {
     state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, level1_data, mapTextureID, 1.0f, 3, 2);
     
     // Initialize Game Objects
-    state.score = 0;
-    state.lives = 3;
     state.lose = false;
+    state.score = 0;
     // Initialize Player
     state.player = new Entity();
     state.player->entityType = PLAYER;
-    state.player->position = glm::vec3(3, 0, 0);
+    state.player->position = glm::vec3(3, -3, 0);
     state.player->movement = glm::vec3(0);
     state.player->speed = 2.0f;
     state.player->textureID = Util::LoadTexture("player.png");
@@ -79,7 +78,7 @@ void Level1::Initialize() {
 }
 void Level1::Update(float deltaTime) {
     state.player->Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);
-    if (state.player->position.x >= 22) state.nextScene = 1;
+    if (state.player->position.x >= 22) state.nextScene = 2;
     state.score = 0;
     for (int i=0; i<ENEMY_COUNT; i++) {
         state.enemies[i].Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);
@@ -87,7 +86,7 @@ void Level1::Update(float deltaTime) {
             state.score+= 50;
         }
     }
-    if (state.player->playerHit || state.player->position.y < -6) {
+    if (state.player->playerHit || state.player->position.y < -10) {
         state.lives -= 1;
         ResetLevel();
         state.player->playerHit = false;
@@ -108,7 +107,8 @@ void Level1::Render(ShaderProgram *program) {
 void Level1::ResetLevel() {
     state.score = 0;
     // Reset Player
-    state.player->position = glm::vec3(5, 0, 0);
+    state.player->position = glm::vec3(3, -3, 0);
+    state.player->velocity = glm::vec3(0, 0, 0);
     state.player->movement = glm::vec3(0);
     
     state.player->animIndices = state.player->animRight;

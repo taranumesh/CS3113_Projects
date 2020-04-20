@@ -26,6 +26,7 @@
 		579D859B244659A100C30734 /* cow.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D859A2443D17C00C30734 /* cow.png */; };
 		579D859D244BB77E00C30734 /* font1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D859C244BB77500C30734 /* font1.png */; };
 		579D85A2244CF0D000C30734 /* GameMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 579D85A1244CF0D000C30734 /* GameMenu.cpp */; };
+		579D85A4244D0F2200C30734 /* GameMenu.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85A3244D0C5800C30734 /* GameMenu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,7 @@
 			dstSubfolderSpec = 6;
 			files = (
 				579D858F2442B77600C30734 /* shaders in CopyFiles */,
+				579D85A4244D0F2200C30734 /* GameMenu.png in CopyFiles */,
 				579D859B244659A100C30734 /* cow.png in CopyFiles */,
 				579D85982442D14100C30734 /* player.png in CopyFiles */,
 				579D85992442D14400C30734 /* tiles.png in CopyFiles */,
@@ -74,8 +76,9 @@
 		579D85972442D13E00C30734 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
 		579D859A2443D17C00C30734 /* cow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow.png; sourceTree = "<group>"; };
 		579D859C244BB77500C30734 /* font1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font1.png; sourceTree = "<group>"; };
-		579D859F244CF0C400C30734 /* GameMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameMenu.hpp; sourceTree = "<group>"; };
+		579D859F244CF0C400C30734 /* GameMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMenu.h; sourceTree = "<group>"; };
 		579D85A1244CF0D000C30734 /* GameMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameMenu.cpp; sourceTree = "<group>"; };
+		579D85A3244D0C5800C30734 /* GameMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameMenu.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				579D859A2443D17C00C30734 /* cow.png */,
+				579D85A3244D0C5800C30734 /* GameMenu.png */,
 				579D85962442D13D00C30734 /* player.png */,
 				579D85972442D13E00C30734 /* tiles.png */,
 				579D859C244BB77500C30734 /* font1.png */,
@@ -122,7 +126,7 @@
 				579D85792442B5C200C30734 /* Entity.cpp */,
 				579D85752442B5C100C30734 /* Entity.h */,
 				579D85A1244CF0D000C30734 /* GameMenu.cpp */,
-				579D859F244CF0C400C30734 /* GameMenu.hpp */,
+				579D859F244CF0C400C30734 /* GameMenu.h */,
 				579D856A2442B5BC00C30734 /* Level1.cpp */,
 				579D85762442B5C100C30734 /* Level1.h */,
 				579D85702442B5BE00C30734 /* Level2.cpp */,

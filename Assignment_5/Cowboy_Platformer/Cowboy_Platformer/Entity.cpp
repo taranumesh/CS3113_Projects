@@ -85,6 +85,8 @@ void Entity::Update(float deltaTime, Entity *player, Entity *objects, int object
     CheckCollisionsX(map);
     if (entityType == PLAYER) {
         CheckCollisionsX(objects, objectCount);
+    } else if (entityType == ENEMY) {
+        CheckCollisionsX(player, 1);
     }
     if (entityType == ENEMY) {
         AI(player);
@@ -143,6 +145,8 @@ void Entity::CheckCollisionsX(Entity *objects, int objectCount)
                 collidedRight = true;
                 if (entityType == PLAYER) {
                     playerHit = true;
+                } else if (entityType == ENEMY) {
+                    object->playerHit = true;
                 }
             }
             else if (velocity.x < 0) {
@@ -151,6 +155,8 @@ void Entity::CheckCollisionsX(Entity *objects, int objectCount)
                 collidedLeft = true;
                 if (entityType == PLAYER) {
                     playerHit = true;
+                } else if (entityType == ENEMY) {
+                    object->playerHit = true;
                 }
             }
         }

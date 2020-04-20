@@ -14,6 +14,7 @@
 #include "Map.h"
 #include "Util.h"
 #include "Scene.h"
+#include "GameMenu.h"
 #include "Level1.h"
 #include "Level2.h"
 
@@ -25,13 +26,21 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
 Scene *currentScene;
-Scene *sceneList[2];
+Scene *sceneList[3];
 
 GLuint fontTextureID;
 
-void SwitchToScene(Scene *scene) {
+int previousLevelsScore = 0;
+
+void SwitchToScene(Scene *scene, int lives) {
+    if (scene == sceneList[0]) {
+        previousLevelsScore = 0;
+    } else {
+        previousLevelsScore += currentScene->state.score;
+    }
     currentScene = scene;
     currentScene->Initialize();
+    currentScene->state.lives = lives;
 }
 
 void Initialize() {
@@ -63,9 +72,10 @@ void Initialize() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     // Initialize the levels and start at the first one
-    sceneList[0] = new Level1();
-    sceneList[1] = new Level2();
-    SwitchToScene(sceneList[0]);
+    sceneList[0] = new GameMenu();
+    sceneList[1] = new Level1();
+    sceneList[2] = new Level2();
+    SwitchToScene(sceneList[0], 3);
     
     fontTextureID = Util::LoadTexture("font1.png");
 }
@@ -94,7 +104,11 @@ void ProcessInput() {
                         
                     case SDLK_SPACE:
                         // Some sort of action
-                        if (currentScene->state.player->collidedBottom) currentScene->state.player->jump = true;
+                        if (currentScene != sceneList[0]) {
+                            if (currentScene->state.player->collidedBottom) currentScene->state.player->jump = true;
+                        } else {
+                            SwitchToScene(sceneList[1], 3);
+                        }
                         break;
                 }
                 break; // SDL_KEYDOWN
@@ -104,12 +118,16 @@ void ProcessInput() {
     const Uint8 *keys = SDL_GetKeyboardState(NULL);
     
     if (keys[SDL_SCANCODE_LEFT]) {
-        currentScene->state.player->movement.x = -1.0f;
-        currentScene->state.player->animIndices = currentScene->state.player->animLeft;
+        if (currentScene != sceneList[0]) {
+            currentScene->state.player->movement.x = -1.0f;
+            currentScene->state.player->animIndices = currentScene->state.player->animLeft;
+        }
     }
     else if (keys[SDL_SCANCODE_RIGHT]) {
-        currentScene->state.player->movement.x = 1.0f;
-        currentScene->state.player->animIndices = currentScene->state.player->animRight;
+        if (currentScene != sceneList[0]) {
+            currentScene->state.player->movement.x = 1.0f;
+            currentScene->state.player->animIndices = currentScene->state.player->animRight;
+        }
     }
     
     
@@ -140,24 +158,26 @@ void Render() {
     program.SetViewMatrix(viewMatrix);
     
     currentScene->Render(&program);
-    glm::vec3 header_position;
-    if ((currentScene->state.player->position.x > 5) && (currentScene->state.player->position.x < 18)) {
-        header_position = glm::vec3(currentScene->state.player->position.x-4, -0.5, 0);
-    } else if (currentScene->state.player->position.x <= 5) {
-        header_position = glm::vec3(1.0, -0.5, 0);
-    } else if (currentScene->state.player->position.x >= 18) {
-        header_position = glm::vec3(14, -0.5, 0);
-    }
-    if (currentScene->state.lose) {
-        header_position.y -= 2.5;
-        header_position.x += 2.5;
-        Util::DrawText(&program, fontTextureID, "YOU LOSE", 1.0f, -0.5f, header_position);
-    } else {
-        std::string score = "Score:" + std::to_string(currentScene->state.score);
-        std::string lives = " Lives:" + std::to_string(currentScene->state.lives);
-        Util::DrawText(&program, fontTextureID, score, 1.0f, -0.5f, header_position);
-        header_position.x += 4.5;
-        Util::DrawText(&program, fontTextureID, lives, 1.0f, -0.5f, header_position);
+    if (currentScene != sceneList[0]) {
+        glm::vec3 header_position;
+        if ((currentScene->state.player->position.x > 5) && (currentScene->state.player->position.x < 18)) {
+            header_position = glm::vec3(currentScene->state.player->position.x-4, -0.5, 0);
+        } else if (currentScene->state.player->position.x <= 5) {
+            header_position = glm::vec3(1.0, -0.5, 0);
+        } else if (currentScene->state.player->position.x >= 18) {
+            header_position = glm::vec3(14, -0.5, 0);
+        }
+        if (currentScene->state.lose) {
+            header_position.y -= 2.5;
+            header_position.x += 2.5;
+            Util::DrawText(&program, fontTextureID, "YOU LOSE", 1.0f, -0.5f, header_position);
+        } else {
+            std::string score = "Score:" + std::to_string((previousLevelsScore + currentScene->state.score));
+            std::string lives = " Lives:" + std::to_string(currentScene->state.lives);
+            Util::DrawText(&program, fontTextureID, score, 1.0f, -0.5f, header_position);
+            header_position.x += 4.5;
+            Util::DrawText(&program, fontTextureID, lives, 1.0f, -0.5f, header_position);
+        }
     }
     SDL_GL_SwapWindow(displayWindow);
 }
@@ -173,7 +193,7 @@ int main(int argc, char* argv[]) {
     while (gameIsRunning) {
         ProcessInput();
         Update();
-        if (currentScene->state.nextScene >= 0) SwitchToScene(sceneList[currentScene->state.nextScene]);
+        if (currentScene->state.nextScene >= 0) SwitchToScene(sceneList[currentScene->state.nextScene], currentScene->state.lives);
         Render();
     }
     

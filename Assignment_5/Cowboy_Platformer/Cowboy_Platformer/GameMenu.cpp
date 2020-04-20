@@ -1,9 +1,146 @@
-//
-//  GameMenu.cpp
-//  Cowboy_Platformer
-//
-//  Created by Tara Umesh on 4/19/20.
-//  Copyright © 2020 Tara Umesh. All rights reserved.
-//
+#include "GameMenu.h"
 
-#include "GameMenu.hpp"
+#define ENEMY_COUNT 2
+#define MENU_WIDTH 11
+#define MENU_HEIGHT 8
+
+unsigned int menu_data[] =
+{
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+    0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 2, 0, 0, 0, 0, 0, 2, 0, 4, 0,
+    3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3,
+    3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3
+};
+
+
+void GameMenu::Initialize() {
+    state.nextScene = -1;
+    GLuint mapTextureID = Util::LoadTexture("tiles.png");
+    state.map = new Map(MENU_WIDTH, MENU_HEIGHT, menu_data, mapTextureID, 1.0f, 3, 2);
+    
+    // Initialize Game Objects
+    state.lives = 3;
+    state.score = 0;
+    // Initialize Player
+    state.player = new Entity();
+    state.player->entityType = PLAYER;
+    state.player->position = glm::vec3(5, -4, 0);
+    state.player->movement = glm::vec3(0);
+    state.player->speed = 2.0f;
+    state.player->textureID = Util::LoadTexture("player.png");
+    
+    state.player->height = 1.0f;
+    state.player->width = 0.5f;
+    
+    state.player->animRight = new int[2] {0, 2};
+    state.player->animLeft = new int[2] {1, 3};
+    
+    state.player->animIndices = state.player->animRight;
+    state.player->animFrames = 2;
+    state.player->animIndex = 1;
+    state.player->animTime = 0;
+    state.player->animCols = 2;
+    state.player->animRows = 2;
+    
+    state.player->acceleration = glm::vec3(0, 0, 0);
+    
+    
+    state.enemies = new Entity[ENEMY_COUNT];
+    GLuint enemyTextureID = Util::LoadTexture("cow.png");
+    
+    for (int i=0; i<ENEMY_COUNT; i++) {
+        state.enemies[i].entityType = ENEMY;
+        state.enemies[i].textureID = enemyTextureID;
+        
+        state.enemies[i].speed = 1;
+        state.enemies[i].acceleration = glm::vec3(0, 0, 0);
+        
+        state.enemies[i].height = 0.6;
+        
+        state.enemies[i].aiType = WALKER;
+        state.enemies[i].aiState = WALKING;
+        
+        state.enemies[i].animRight = new int[2] {0, 2};
+        state.enemies[i].animIndices = state.enemies[i].animRight;
+        state.enemies[i].animFrames = 2;
+        state.enemies[i].animIndex = 0;
+        state.enemies[i].animCols = 2;
+        state.enemies[i].animRows = 2;
+        state.enemies[i].movement = glm::vec3(0, 0, 0);
+    }
+    state.enemies[0].position = glm::vec3(2, -5.2, 0);
+    state.enemies[1].position = glm::vec3(8, -5.2, 0);
+    
+    titleTextureID = Util::LoadTexture("GameMenu.png");
+}
+
+void GameMenu::Update(float deltaTime) {
+    state.player->modelMatrix = glm::mat4(1.0f);
+    state.player->modelMatrix = glm::translate(state.player->modelMatrix, state.player->position);
+    for (int i=0; i<ENEMY_COUNT; i++) {
+        state.enemies[i].Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);
+    }
+}
+
+void GameMenu::Render(ShaderProgram *program) {
+    state.map->Render(program);
+    state.player->Render(program);
+    for (int i=0; i<ENEMY_COUNT; i++) {
+        state.enemies[i].Render(program);
+    }
+    RenderTitle(program, glm::vec3(5.0, -2.0, 0.0), glm::vec3(3.0, 3.0, 1.0));
+}
+
+void GameMenu::ResetLevel() {
+    state.score = 0;
+    // Reset Player
+    state.player->position = glm::vec3(5, 0, 0);
+    state.player->movement = glm::vec3(0);
+    
+    state.player->animIndices = state.player->animRight;
+    state.player->animIndex = 0;
+    
+    state.player->acceleration = glm::vec3(0, -9.81f, 0);
+    
+    // Reset Enemies
+    for (int i=0; i<ENEMY_COUNT; i++) {
+        state.enemies[i].acceleration = glm::vec3(0, -9.81f, 0);
+        
+        state.enemies[i].aiType = WALKER;
+        state.enemies[i].aiState = WALKING;
+        
+        state.enemies[i].animIndices = state.enemies[i].animRight;
+        state.enemies[i].animIndex = 0;
+        state.enemies[i].movement = glm::vec3(-1, 0, 0);
+        state.enemies[i].isActive = true;
+    }
+    state.enemies[0].position = glm::vec3(12, -5, 0);
+    state.enemies[1].position = glm::vec3(20, -5, 0);
+}
+
+void GameMenu::RenderTitle(ShaderProgram *program, glm::vec3 position, glm::vec3 scale) {
+    glm::mat4 modelMatrix(1.0f);
+    modelMatrix = glm::translate(modelMatrix, position);
+    modelMatrix = glm::scale(modelMatrix, scale);
+    program->SetModelMatrix(modelMatrix);
+    
+    float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    
+    glBindTexture(GL_TEXTURE_2D, titleTextureID);
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program->positionAttribute);
+    
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}

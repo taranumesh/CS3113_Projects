@@ -1,19 +1,19 @@
 #include "Level2.h"
 
-#define ENEMY_COUNT 2
+#define ENEMY_COUNT 4
 #define LEVEL2_WIDTH 24
 #define LEVEL2_HEIGHT 8
 
 unsigned int level2_data[] =
 {
-    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 5,
-    5, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5,
-    5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-    5, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 5,
-    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5,
-    5, 0, 2, 0, 0, 2, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 3, 3, 5,
-    5, 3, 3, 3, 3, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 3, 3, 5,
-    5, 3, 3, 3, 3, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5
+    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 0, 1, 0, 5,
+    5, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5,
+    5, 0, 0, 1, 0, 5, 5, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5,
+    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 5, 5, 0, 0, 0, 0, 5,
+    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5,
+    5, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 5, 3, 3, 5,
+    5, 3, 3, 3, 0, 0, 5, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 5, 0, 0, 0, 3, 5,
+    5, 3, 3, 3, 0, 0, 5, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 3, 3, 5
 };
 
 void Level2::Initialize() {
@@ -22,13 +22,12 @@ void Level2::Initialize() {
     state.map = new Map(LEVEL2_WIDTH, LEVEL2_HEIGHT, level2_data, mapTextureID, 1.0f, 3, 2);
     
     // Initialize Game Objects
-    state.score = 0;
-    state.lives = 3;
     state.lose = false;
+    state.score = 0;
     // Initialize Player
     state.player = new Entity();
     state.player->entityType = PLAYER;
-    state.player->position = glm::vec3(5, 0, 0);
+    state.player->position = glm::vec3(3, -3, 0);
     state.player->movement = glm::vec3(0);
     state.player->speed = 2.0f;
     state.player->textureID = Util::LoadTexture("player.png");
@@ -74,12 +73,14 @@ void Level2::Initialize() {
         state.enemies[i].animRows = 2;
         state.enemies[i].movement = glm::vec3(-1, 0, 0);
     }
-    state.enemies[0].position = glm::vec3(12, -5, 0);
-    state.enemies[1].position = glm::vec3(20, -5, 0);
+    state.enemies[0].position = glm::vec3(6, -1, 0);
+    state.enemies[1].position = glm::vec3(12, -6, 0);
+    state.enemies[2].position = glm::vec3(13, -6, 0);
+    state.enemies[3].position = glm::vec3(21, -6, 0);
 }
 void Level2::Update(float deltaTime) {
     state.player->Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);
-    if (state.player->position.x >= 22) state.nextScene = 1;
+    if (state.player->position.x >= 22) state.nextScene = 0;
     state.score = 0;
     for (int i=0; i<ENEMY_COUNT; i++) {
         state.enemies[i].Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);
@@ -87,7 +88,7 @@ void Level2::Update(float deltaTime) {
             state.score+= 50;
         }
     }
-    if (state.player->playerHit || state.player->position.y < -6) {
+    if (state.player->playerHit || state.player->position.y < -10) {
         state.lives -= 1;
         ResetLevel();
         state.player->playerHit = false;
@@ -108,7 +109,8 @@ void Level2::Render(ShaderProgram *program) {
 void Level2::ResetLevel() {
     state.score = 0;
     // Reset Player
-    state.player->position = glm::vec3(5, 0, 0);
+    state.player->position = glm::vec3(3, -3, 0);
+    state.player->velocity = glm::vec3(0, 0, 0);
     state.player->movement = glm::vec3(0);
     
     state.player->animIndices = state.player->animRight;
@@ -128,6 +130,8 @@ void Level2::ResetLevel() {
         state.enemies[i].movement = glm::vec3(-1, 0, 0);
         state.enemies[i].isActive = true;
     }
-    state.enemies[0].position = glm::vec3(12, -5, 0);
-    state.enemies[1].position = glm::vec3(20, -5, 0);
+    state.enemies[0].position = glm::vec3(6, -1, 0);
+    state.enemies[1].position = glm::vec3(12, -6, 0);
+    state.enemies[2].position = glm::vec3(13, -6, 0);
+    state.enemies[3].position = glm::vec3(21, -6, 0);
 }
