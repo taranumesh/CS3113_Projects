@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/Entity.cpp"
-            timestampString = "609033903.574973"
+            timestampString = "609036756.1396509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/Entity.cpp"
-            timestampString = "609033903.575171"
+            timestampString = "609036756.139737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/Entity.cpp"
-            timestampString = "609033903.575249"
+            timestampString = "609036756.139794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/Level1.cpp"
-            timestampString = "609033903.5754499"
+            timestampString = "609036756.139869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "Level1::Update(float deltaTime)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,7 +74,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.575523"
+            timestampString = "609036756.139927"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "Update()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cowboy_Platformer/main.cpp"
+            timestampString = "609036756.139987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -90,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.575585"
+            timestampString = "609036756.140041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "Update()"
             landmarkType = "9">
          </BreakpointContent>
@@ -106,39 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.575637"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "Update()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.575689"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "Update()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.5757411"
+            timestampString = "609036756.140095"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
@@ -154,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.575793"
+            timestampString = "609036756.140149"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "Update()"
             landmarkType = "9">
          </BreakpointContent>
@@ -170,11 +154,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.575843"
+            timestampString = "609036756.140201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "Update()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cowboy_Platformer/main.cpp"
+            timestampString = "609036756.1402529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "main(int argc, char* argv[])"
             landmarkType = "9">
          </BreakpointContent>
@@ -207,11 +207,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/main.cpp"
-            timestampString = "609033903.575894"
+            timestampString = "609036756.140306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "SwitchToScene(Scene *scene, int lives)"
             landmarkType = "9">
          </BreakpointContent>
@@ -223,7 +223,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/Entity.cpp"
-            timestampString = "609033903.575941"
+            timestampString = "609036756.140355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "141"
@@ -239,7 +239,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cowboy_Platformer/Entity.cpp"
-            timestampString = "609033903.575986"
+            timestampString = "609036756.140399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "142"

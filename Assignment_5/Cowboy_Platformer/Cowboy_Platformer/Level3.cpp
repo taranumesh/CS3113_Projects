@@ -1,29 +1,29 @@
-#include "Level1.h"
+#include "Level3.h"
 
-#define ENEMY_COUNT 2
-#define LEVEL1_WIDTH 24
-#define LEVEL1_HEIGHT 8
+#define ENEMY_COUNT 4
+#define LEVEL3_WIDTH 24
+#define LEVEL3_HEIGHT 8
 
-unsigned int level1_data[] =
+unsigned int level3_data[] =
 {
-    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 5,
-    5, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5,
-    5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-    5, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 5,
-    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5,
-    5, 0, 2, 0, 0, 2, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 3, 3, 5,
-    5, 3, 3, 3, 3, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 3, 3, 5,
-    5, 3, 3, 3, 3, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5
+    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 0, 1, 0, 5,
+    5, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5,
+    5, 0, 0, 1, 0, 5, 5, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5,
+    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 5, 5, 0, 0, 0, 0, 5,
+    5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5,
+    5, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 5, 3, 3, 5,
+    5, 3, 3, 3, 0, 0, 5, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 5, 0, 0, 0, 3, 5,
+    5, 3, 3, 3, 0, 0, 5, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 3, 3, 5
 };
 
-void Level1::Initialize() {
+void Level3::Initialize() {
     state.nextScene = -1;
     GLuint mapTextureID = Util::LoadTexture("tiles.png");
-    state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, level1_data, mapTextureID, 1.0f, 3, 2);
+    state.map = new Map(LEVEL3_WIDTH, LEVEL3_HEIGHT, level3_data, mapTextureID, 1.0f, 3, 2);
     
     // Initialize Game Objects
-    state.win = false;
     state.lose = false;
+    state.win = false;
     state.score = 0;
     
     // Initialize Player
@@ -75,12 +75,17 @@ void Level1::Initialize() {
         state.enemies[i].animRows = 2;
         state.enemies[i].movement = glm::vec3(-1, 0, 0);
     }
-    state.enemies[0].position = glm::vec3(12, -5, 0);
-    state.enemies[1].position = glm::vec3(20, -5, 0);
+    state.enemies[0].position = glm::vec3(6, -1, 0);
+    state.enemies[1].position = glm::vec3(12, -6, 0);
+    state.enemies[2].position = glm::vec3(13, -6, 0);
+    state.enemies[3].position = glm::vec3(21, -6, 0);
 }
-void Level1::Update(float deltaTime) {
+void Level3::Update(float deltaTime) {
     state.player->Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);
-    if (state.player->position.x >= 22) state.nextScene = 2;
+    if (state.player->position.x >= 22) {
+        state.win = true;
+        state.nextScene = 0;
+    }
     state.score = 0;
     for (int i=0; i<ENEMY_COUNT; i++) {
         state.enemies[i].Update(deltaTime, state.player, state.enemies, ENEMY_COUNT, state.map);
@@ -94,7 +99,7 @@ void Level1::Update(float deltaTime) {
         state.player->playerHit = false;
     }
 }
-void Level1::Render(ShaderProgram *program) {
+void Level3::Render(ShaderProgram *program) {
     state.map->Render(program);
     if (state.lives == 0) {
         state.lose = true;
@@ -106,7 +111,7 @@ void Level1::Render(ShaderProgram *program) {
     }
 }
 
-void Level1::ResetLevel() {
+void Level3::ResetLevel() {
     state.score = 0;
     // Reset Player
     state.player->position = glm::vec3(3, -3, 0);
@@ -130,7 +135,8 @@ void Level1::ResetLevel() {
         state.enemies[i].movement = glm::vec3(-1, 0, 0);
         state.enemies[i].isActive = true;
     }
-    state.enemies[0].position = glm::vec3(12, -5, 0);
-    state.enemies[1].position = glm::vec3(20, -5, 0);
+    state.enemies[0].position = glm::vec3(6, -1, 0);
+    state.enemies[1].position = glm::vec3(12, -6, 0);
+    state.enemies[2].position = glm::vec3(13, -6, 0);
+    state.enemies[3].position = glm::vec3(21, -6, 0);
 }
-

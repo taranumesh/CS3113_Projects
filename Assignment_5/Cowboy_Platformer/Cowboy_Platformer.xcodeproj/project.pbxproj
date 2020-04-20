@@ -27,6 +27,7 @@
 		579D859D244BB77E00C30734 /* font1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D859C244BB77500C30734 /* font1.png */; };
 		579D85A2244CF0D000C30734 /* GameMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 579D85A1244CF0D000C30734 /* GameMenu.cpp */; };
 		579D85A4244D0F2200C30734 /* GameMenu.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 579D85A3244D0C5800C30734 /* GameMenu.png */; };
+		579D85A7244D222800C30734 /* Level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 579D85A5244D222800C30734 /* Level3.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +80,8 @@
 		579D859F244CF0C400C30734 /* GameMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMenu.h; sourceTree = "<group>"; };
 		579D85A1244CF0D000C30734 /* GameMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameMenu.cpp; sourceTree = "<group>"; };
 		579D85A3244D0C5800C30734 /* GameMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameMenu.png; sourceTree = "<group>"; };
+		579D85A5244D222800C30734 /* Level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level3.cpp; sourceTree = "<group>"; };
+		579D85A6244D222800C30734 /* Level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level3.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				579D85762442B5C100C30734 /* Level1.h */,
 				579D85702442B5BE00C30734 /* Level2.cpp */,
 				579D856B2442B5BD00C30734 /* Level2.h */,
+				579D85A5244D222800C30734 /* Level3.cpp */,
+				579D85A6244D222800C30734 /* Level3.h */,
 				579D856E2442B5BD00C30734 /* Map.cpp */,
 				579D85722442B5C000C30734 /* Map.h */,
 				579D856F2442B5BD00C30734 /* Scene.cpp */,
@@ -218,6 +223,7 @@
 				579D857F2442B5C300C30734 /* Scene.cpp in Sources */,
 				579D857E2442B5C300C30734 /* Map.cpp in Sources */,
 				579D85812442B5C300C30734 /* main.cpp in Sources */,
+				579D85A7244D222800C30734 /* Level3.cpp in Sources */,
 				579D85A2244CF0D000C30734 /* GameMenu.cpp in Sources */,
 				579D85822442B5C300C30734 /* ShaderProgram.cpp in Sources */,
 				579D857C2442B5C300C30734 /* Level1.cpp in Sources */,

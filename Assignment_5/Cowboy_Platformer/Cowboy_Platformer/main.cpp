@@ -17,6 +17,7 @@
 #include "GameMenu.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "Level3.h"
 
 
 SDL_Window* displayWindow;
@@ -26,7 +27,7 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
 Scene *currentScene;
-Scene *sceneList[3];
+Scene *sceneList[4];
 
 GLuint fontTextureID;
 
@@ -75,6 +76,7 @@ void Initialize() {
     sceneList[0] = new GameMenu();
     sceneList[1] = new Level1();
     sceneList[2] = new Level2();
+    sceneList[3] = new Level3();
     SwitchToScene(sceneList[0], 3);
     
     fontTextureID = Util::LoadTexture("font1.png");
@@ -158,6 +160,7 @@ void Render() {
     program.SetViewMatrix(viewMatrix);
     
     currentScene->Render(&program);
+    
     if (currentScene != sceneList[0]) {
         glm::vec3 header_position;
         if ((currentScene->state.player->position.x > 5) && (currentScene->state.player->position.x < 18)) {
@@ -167,16 +170,22 @@ void Render() {
         } else if (currentScene->state.player->position.x >= 18) {
             header_position = glm::vec3(14, -0.5, 0);
         }
+        // Game Header
+        std::string score = "Score:" + std::to_string((previousLevelsScore + currentScene->state.score));
+        std::string lives = " Lives:" + std::to_string(currentScene->state.lives);
+        Util::DrawText(&program, fontTextureID, score, 1.0f, -0.5f, header_position);
+        header_position.x += 4.5;
+        Util::DrawText(&program, fontTextureID, lives, 1.0f, -0.5f, header_position);
+        
+        // Check Lose/Win
         if (currentScene->state.lose) {
             header_position.y -= 2.5;
             header_position.x += 2.5;
             Util::DrawText(&program, fontTextureID, "YOU LOSE", 1.0f, -0.5f, header_position);
-        } else {
-            std::string score = "Score:" + std::to_string((previousLevelsScore + currentScene->state.score));
-            std::string lives = " Lives:" + std::to_string(currentScene->state.lives);
-            Util::DrawText(&program, fontTextureID, score, 1.0f, -0.5f, header_position);
-            header_position.x += 4.5;
-            Util::DrawText(&program, fontTextureID, lives, 1.0f, -0.5f, header_position);
+        } else if (currentScene->state.win){
+            header_position.y -= 2.5;
+            header_position.x += 2.5;
+            Util::DrawText(&program, fontTextureID, "YOU WIN!", 1.0f, -0.5f, header_position);
         }
     }
     SDL_GL_SwapWindow(displayWindow);
@@ -192,9 +201,13 @@ int main(int argc, char* argv[]) {
     
     while (gameIsRunning) {
         ProcessInput();
-        Update();
         if (currentScene->state.nextScene >= 0) SwitchToScene(sceneList[currentScene->state.nextScene], currentScene->state.lives);
+        Update();
         Render();
+        if (currentScene->state.lose || currentScene->state.win) {
+            SDL_Delay(2000);
+            SwitchToScene(sceneList[0], 3);
+        }
     }
     
     Shutdown();

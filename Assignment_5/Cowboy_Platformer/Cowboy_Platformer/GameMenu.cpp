@@ -25,6 +25,8 @@ void GameMenu::Initialize() {
     // Initialize Game Objects
     state.lives = 3;
     state.score = 0;
+    state.win = false;
+    state.lose = false;
     // Initialize Player
     state.player = new Entity();
     state.player->entityType = PLAYER;

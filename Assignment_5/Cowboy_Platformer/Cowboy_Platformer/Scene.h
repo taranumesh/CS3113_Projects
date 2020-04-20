@@ -20,6 +20,7 @@ struct GameState {
     int score;
     int lives;
     bool lose;
+    bool win;
     int nextScene;
 };
 class Scene {
