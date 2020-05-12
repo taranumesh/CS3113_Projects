@@ -12,9 +12,21 @@
 #include "ShaderProgram.h"
 #include "Map.h"
 #include "Entity.h"
+#include "Plant.h"
+
+enum aiState {
+    INACTIVE,
+    WALKING,
+    EATING,
+    FLEEING
+};
 
 class Enemy: public Entity {
 public:
+    enum aiState state;
+    Plant* target;
+    glm::vec3 startPosition;
+    float eating_timer;
     Enemy();
     void Update(float deltaTime, Entity *objects, int objectCount, Map *map) override;
 };

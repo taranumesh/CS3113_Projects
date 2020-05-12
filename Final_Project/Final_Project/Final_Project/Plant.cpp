@@ -24,6 +24,8 @@ Plant::Plant()
     isActive = false;
     
     water_level = 1.0;
+    
+    sound_effect = Mix_LoadWAV("dig.wav");
 }
 
 void Plant::Update(float deltaTime, Entity *objects, int objectCount, Map *map)
@@ -32,56 +34,58 @@ void Plant::Update(float deltaTime, Entity *objects, int objectCount, Map *map)
     
     switch (state) {
         case SEED:
-            water_level -= 0.1*deltaTime;
-            timer += 0.1*deltaTime;
+            water_level -= 0.075*deltaTime;
+            timer += 0.075*deltaTime;
             if (timer > 1.0) {
                 state = SEEDLING;
                 animIndex = 1;
             }
             if (water_level < 0) {
+                state = DEAD;
                 isActive = false;
             }
             break;
         case SEEDLING:
-            water_level -= 0.1*deltaTime;
-            timer += 0.1*deltaTime;
+            water_level -= 0.075*deltaTime;
+            timer += 0.075*deltaTime;
             if (timer > 2.0) {
                 state = ADULT;
                 animIndex = 2;
             }
             if (water_level < 0) {
+                state = DEAD;
                 isActive = false;
             }
             break;
         case ADULT:
-            water_level -= 0.1*deltaTime;
-            timer += 0.1*deltaTime;
+            water_level -= 0.075*deltaTime;
+            timer += 0.075*deltaTime;
             if (timer > 3.0) {
                 state = FLOWERING;
                 animIndex = 3;
             }
             if (water_level < 0) {
+                state = DEAD;
                 isActive = false;
             }
             break;
         case FLOWERING:
-            water_level -= 0.1*deltaTime;
-            timer += 0.1*deltaTime;
+            water_level -= 0.075*deltaTime;
+            timer += 0.075*deltaTime;
             if (timer > 4.0) {
                 state = DEAD;
                 animIndex = 4;
             }
             if (water_level < 0) {
+                state = DEAD;
                 isActive = false;
             }
             break;
         case DEAD:
-            water_level -= 0.1*deltaTime;
+            water_level -= 0.05*deltaTime;
             timer += 0.1*deltaTime;
             if (timer > 5.0) {
-                state = SEED;
                 animIndex = 0;
-                timer = 0;
                 isActive = false;
             }
             break;
@@ -95,6 +99,8 @@ void Plant::PlacePlant(glm::vec3 plant_position) {
     isActive = true;
     state = SEED;
     water_level = 1.0;
+    timer = 0;
+    Mix_PlayChannel(-1, sound_effect, 0);
 }
 
 void Plant::WaterPlant(void) {
@@ -103,7 +109,7 @@ void Plant::WaterPlant(void) {
 
 void Plant::HarvestPlant(void) {
     isActive = false;
-    state = DEAD;
+    state = HARVESTED;
 }
 
 

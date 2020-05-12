@@ -75,3 +75,7 @@ void MainMenu::HarvestPlant() {
     
 }
 
+void MainMenu::NextScene() {
+    state.nextScene = 1;
+}
+

@@ -19,6 +19,7 @@ public:
     void WaterPlant(void) override;
     void HarvestPlant(void) override;
     void PlacePlant(void) override;
+    void NextScene(void) override;
 };
 
 

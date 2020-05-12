@@ -1,3 +1,6 @@
+#ifndef Plant_h
+#define Plant_h
+
 #define GL_SILENCE_DEPRECATION
 
 #ifdef _WINDOWS
@@ -18,7 +21,8 @@ enum plantState {
     SEEDLING,
     ADULT,
     FLOWERING,
-    DEAD
+    DEAD,
+    HARVESTED
 };
 
 class Plant: public Entity {
@@ -33,3 +37,5 @@ public:
     void HarvestPlant(void);
     void Render_Water_Level(ShaderProgram *program);
 };
+
+#endif

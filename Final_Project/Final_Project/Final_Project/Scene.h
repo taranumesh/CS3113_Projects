@@ -32,6 +32,8 @@ struct GameState {
     
     bool lose;
     bool win;
+    
+    float score;
 };
 class Scene {
 public:
@@ -42,6 +44,7 @@ public:
     virtual void WaterPlant(void) = 0;
     virtual void HarvestPlant(void) = 0;
     virtual void PlacePlant(void) = 0;
+    virtual void NextScene(void) = 0;
 };
 
 #endif

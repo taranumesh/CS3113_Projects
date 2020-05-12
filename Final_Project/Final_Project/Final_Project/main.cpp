@@ -6,6 +6,7 @@
 
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <SDL_opengl.h>
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -25,7 +26,9 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
 Scene *currentScene;
-Scene *sceneList[2];
+Scene *sceneList[3];
+
+Mix_Music *music;
 
 void SwitchToScene(Scene *scene) {
     currentScene = scene;
@@ -33,7 +36,7 @@ void SwitchToScene(Scene *scene) {
 }
 
 void Initialize() {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     displayWindow = SDL_CreateWindow("Sunflower Farm", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
@@ -64,7 +67,12 @@ void Initialize() {
     // Initialize the levels and start at the first one
     sceneList[0] = new MainMenu();
     sceneList[1] = new Level1();
+    sceneList[2] = new Level2();
     SwitchToScene(sceneList[0]);
+    
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    music = Mix_LoadMUS("Sunflower_Farm_Theme.wav");
+    Mix_PlayMusic(music, -1);
 }
 
 void ProcessInput() {
@@ -92,7 +100,11 @@ void ProcessInput() {
                         break;
                     case SDLK_RETURN:
                         if (currentScene == sceneList[0]) {
-                            currentScene->state.nextScene = 1;
+                            currentScene->NextScene();
+                        } else if (currentScene->state.lose) {
+                            currentScene->Initialize();
+                        } else if (currentScene->state.win) {
+                            currentScene->NextScene();
                         }
                         break;
                 }

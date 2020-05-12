@@ -9,6 +9,7 @@
 
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <SDL_opengl.h>
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -47,6 +48,8 @@ public:
     
     float width = 1;
     float height = 1;
+    
+    Mix_Chunk* sound_effect;
     
     bool CheckCollision(Entity *other);
     void CheckCollisionsY(Entity *objects, int objectCount);
